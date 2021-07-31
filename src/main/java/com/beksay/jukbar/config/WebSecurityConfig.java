@@ -1,5 +1,7 @@
 package com.beksay.jukbar.config;
 
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +16,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.beksay.jukbar.jwt.JWTAuthorizationFilter;
+import com.beksay.jukbar.jwt.JwtTokenProvider;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -39,6 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin().loginPage("/api/user/login").and()
 		.httpBasic().and().csrf().disable();
+		
+	    http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtTokenProvider));
 	}
 	
 	@Override

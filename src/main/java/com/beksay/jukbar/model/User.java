@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.beksay.jukbar.enums.Role;
 
@@ -35,5 +36,8 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role")
 	private Role role;
+	
+	@Transient
+	private String token;
 
 }
