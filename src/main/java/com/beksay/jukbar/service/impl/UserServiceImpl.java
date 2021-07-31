@@ -1,4 +1,4 @@
-package com.beksay.jukbar.service;
+package com.beksay.jukbar.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.beksay.jukbar.model.User;
 import com.beksay.jukbar.repository.UserRepository;
+import com.beksay.jukbar.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,8 +36,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findByUsername(String username) {
-		return userRepository.findByUsername(username);
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username); 
 	}
 
 	@Override

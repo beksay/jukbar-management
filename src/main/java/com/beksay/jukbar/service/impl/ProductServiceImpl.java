@@ -1,4 +1,4 @@
-package com.beksay.jukbar.service;
+package com.beksay.jukbar.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.beksay.jukbar.model.Product;
 import com.beksay.jukbar.repository.ProductRepository;
+import com.beksay.jukbar.service.ProductService;
 
 @Service
 @Transactional
